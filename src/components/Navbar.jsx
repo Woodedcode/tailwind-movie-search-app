@@ -1,4 +1,12 @@
+import { useState } from "react";
+
 function Navbar({tab, setTab}) {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    function selectTab(value) {
+        setTab(value);
+        setMenuOpen(false);
+    }
 
     return (
         <header className="w-full border-b border-white/10 bg-black/20 backdrop-blur-lg">
@@ -7,14 +15,14 @@ function Navbar({tab, setTab}) {
                     Movie<span className="text-brand-500">Find</span>
                 </span>
 
-                <nav className="flex items-center gap-8">
+                <nav className="hidden md:flex items-center gap-8">
                     <button 
                     className={`text-sm font-semibold transition-colors cursor-pointer ${
                     tab === "all"
                         ? "text-brand-500"
                         : "text-white/70 hover:text-white"
                         }`}
-                        onClick={() => setTab("all")}
+                        onClick={() => selectTab("all")}
                         >
                         All Movies
                     </button>
@@ -24,12 +32,39 @@ function Navbar({tab, setTab}) {
                         ? "text-brand-500"
                         : "text-white/70 hover:text-white"
                         }`}
-                        onClick={() => setTab("all")}
+                        onClick={() => selectTab("favorites")}
                     >
                         Favorites
                     </button>
                 </nav>
+                <button className="md:hidden w-10 h-10 flex items-center justify-center rounded-full border border-white/10 bg-white/10 text-white cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
+                {menuOpen ? "✕" : "☰"}
+                </button>
             </div>
+            {menuOpen && (
+                <div className="md:hidden flex flex-col gap-1 px-6 pb-4">
+                    <button 
+                    className={`text-left text-sm font-semibold transition-colors cursor-pointer ${
+                    tab === "all"
+                        ? "text-brand-500"
+                        : "text-white/70 hover:text-white"
+                        }`}
+                        onClick={() => selectTab("all")}
+                        >
+                        All Movies
+                    </button>
+                    <button
+                        className={`text-left text-sm font-semibold transition-colors cursor-pointer ${
+                    tab === "favorites"
+                        ? "text-brand-500"
+                        : "text-white/70 hover:text-white"
+                        }`}
+                        onClick={() => selectTab("favorites")}
+                    >
+                        Favorites
+                    </button>
+                </div>
+            )}
         </header>
     )
 }

@@ -1,6 +1,9 @@
 function MovieCard({ movie, isFavorite, onToggleFavorite }) {
   return (
     <div className="relative overflow-hidden min-h-96 rounded-3xl bg-white/10 border border-white/10 shadow-xl transition hover:-translate-y-1.5 hover:border-brand-600/50 hover:shadow-2xl">
+      <span className="absolute top-3 left-3 bg-black/60 px-2 py-1 rounded-full uppercase text-white/75">
+        {movie.Type}
+      </span>
       <img
         src={movie.Poster}
         alt={movie.Title}

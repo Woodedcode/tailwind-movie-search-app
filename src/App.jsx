@@ -4,6 +4,7 @@ import MovieCard from "./components/MovieCard";
 import useDebounce from "./hooks/useDebounce";
 import useLocalStorage from "./hooks/useLocalStorage";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer"
 
 const API_KEY = "29761556";
 
@@ -106,6 +107,7 @@ function App() {
         )}
       </div>
     </main>
+    <Footer />
     </div>
   );
 }
